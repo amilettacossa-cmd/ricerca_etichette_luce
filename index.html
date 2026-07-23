@@ -5,13 +5,25 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#151515">
   <title>Ricerca etichette OLO · LUCE</title>
+
   <style>
     :root{
-      --orange:#f28b00;--orange2:#ffb347;--black:#151515;--ink:#222;
-      --muted:#6b7280;--line:#e5e7eb;--bg:#f4f5f7;--white:#fff;
-      --ok:#147d45;--bad:#b42318
+      --orange:#f28b00;
+      --orange2:#ffb347;
+      --black:#151515;
+      --ink:#222;
+      --muted:#6b7280;
+      --line:#e5e7eb;
+      --bg:#f4f5f7;
+      --white:#fff;
+      --ok:#147d45;
+      --bad:#b42318;
     }
-    *{box-sizing:border-box}
+
+    *{
+      box-sizing:border-box;
+    }
+
     body{
       margin:0;
       font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
@@ -19,173 +31,373 @@
       background:
         radial-gradient(circle at top right,rgba(242,139,0,.16),transparent 28rem),
         linear-gradient(#fbfbfc,var(--bg));
-      min-height:100vh
+      min-height:100vh;
     }
-    .top{height:7px;background:linear-gradient(90deg,var(--orange),var(--orange2))}
-    .shell{width:min(760px,calc(100% - 24px));margin:auto;padding:24px 0 44px}
+
+    .top{
+      height:7px;
+      background:linear-gradient(90deg,var(--orange),var(--orange2));
+    }
+
+    .shell{
+      width:min(760px,calc(100% - 24px));
+      margin:auto;
+      padding:24px 0 44px;
+    }
+
     .card{
       background:rgba(255,255,255,.97);
       border:1px solid rgba(255,255,255,.9);
       border-radius:24px;
-      box-shadow:0 24px 70px rgba(0,0,0,.12)
+      box-shadow:0 24px 70px rgba(0,0,0,.12);
     }
-    .hero{padding:28px;margin-bottom:18px}
-    .logo{width:min(260px,80%);height:auto;display:block;margin-bottom:14px}
-    .eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;font-weight:900;color:#d97706}
-    h1{margin:.25rem 0 .65rem;font-size:clamp(2rem,5vw,3rem);line-height:1.04;letter-spacing:-.04em}
-    p{color:var(--muted);line-height:1.55;margin:.4rem 0}
-    .form-card{padding:28px}
-    label{display:block;margin-bottom:8px;font-weight:850}
+
+    .hero{
+      padding:28px;
+      margin-bottom:18px;
+    }
+
+    .logo{
+      width:min(260px,80%);
+      display:block;
+      margin-bottom:14px;
+    }
+
+    .eyebrow{
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-weight:900;
+      color:#d97706;
+    }
+
+    h1{
+      margin:.25rem 0 .65rem;
+      font-size:clamp(2rem,5vw,3rem);
+      line-height:1.04;
+      letter-spacing:-.04em;
+    }
+
+    p{
+      color:var(--muted);
+      line-height:1.55;
+    }
+
+    .form-card{
+      padding:28px;
+    }
+
+    label{
+      display:block;
+      margin-bottom:8px;
+      font-weight:800;
+    }
+
     input{
-      width:100%;border:1.5px solid var(--line);border-radius:15px;
-      padding:15px;font:inherit;background:#fff;outline:none;text-transform:uppercase
+      width:100%;
+      border:1.5px solid var(--line);
+      border-radius:15px;
+      padding:15px;
+      font:inherit;
+      text-transform:uppercase;
+      outline:none;
     }
-    input:focus{border-color:var(--orange);box-shadow:0 0 0 4px rgba(242,139,0,.12)}
+
+    input:focus{
+      border-color:var(--orange);
+      box-shadow:0 0 0 4px rgba(242,139,0,.12);
+    }
+
     button{
-      width:100%;border:0;border-radius:15px;min-height:54px;margin-top:13px;
-      padding:0 22px;font:inherit;font-weight:900;cursor:pointer;
+      width:100%;
+      min-height:54px;
+      margin-top:13px;
+      border:0;
+      border-radius:15px;
       background:linear-gradient(135deg,var(--orange),var(--orange2));
-      color:#18130d;box-shadow:0 12px 24px rgba(242,139,0,.25)
+      font:inherit;
+      font-weight:900;
+      cursor:pointer;
     }
-    button:disabled{opacity:.65;cursor:wait}
-    .status{display:none;margin-top:18px;padding:14px 16px;border-radius:14px;font-weight:750}
-    .status.show{display:block}
-    .success{color:var(--ok);background:#eaf7ef;border:1px solid #b9e2c8}
-    .error{color:var(--bad);background:#fff0ee;border:1px solid #f5c1ba}
-    .result{display:none;margin-top:20px}
-    .result.show{display:block}
+
+    button:disabled{
+      opacity:.6;
+      cursor:wait;
+    }
+
+    .status{
+      display:none;
+      margin-top:18px;
+      padding:14px;
+      border-radius:14px;
+      font-weight:700;
+    }
+
+    .status.show{
+      display:block;
+    }
+
+    .success{
+      background:#eaf7ef;
+      color:var(--ok);
+      border:1px solid #b9e2c8;
+    }
+
+    .error{
+      background:#fff0ee;
+      color:var(--bad);
+      border:1px solid #f5c1ba;
+    }
+
+    .result{
+      display:none;
+      margin-top:22px;
+    }
+
+    .result.show{
+      display:block;
+    }
+
     .details{
-      display:grid;grid-template-columns:1fr 1fr;gap:12px;
-      margin-bottom:16px
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:12px;
+      margin-bottom:16px;
     }
-    .detail{padding:13px;border:1px solid var(--line);border-radius:14px;background:#fafafa}
-    .detail small{display:block;color:var(--muted);margin-bottom:4px}
-    .detail strong{overflow-wrap:anywhere}
+
+    .detail{
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:#fafafa;
+      padding:13px;
+    }
+
+    .detail small{
+      display:block;
+      color:var(--muted);
+      margin-bottom:4px;
+    }
+
     .photo-wrap{
-      border:1px solid var(--line);border-radius:18px;overflow:hidden;
-      background:#111;display:flex;align-items:center;justify-content:center;
-      min-height:220px
+      border:1px solid var(--line);
+      border-radius:18px;
+      overflow:hidden;
+      background:#111;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:220px;
     }
-    .photo-wrap img{display:block;width:100%;height:auto;max-height:72vh;object-fit:contain}
-    .footer{text-align:center;color:var(--muted);font-size:.84rem;margin-top:20px}
+
+    .photo-wrap img{
+      width:100%;
+      max-height:72vh;
+      object-fit:contain;
+    }
+
+    .footer{
+      margin-top:20px;
+      text-align:center;
+      color:var(--muted);
+      font-size:.84rem;
+    }
+
     @media(max-width:600px){
-      .shell{width:min(100% - 16px,760px);padding-top:12px}
-      .card{border-radius:19px}.hero,.form-card{padding:21px}
-      .details{grid-template-columns:1fr}
+
+      .details{
+        grid-template-columns:1fr;
+      }
+
+      .hero,.form-card{
+        padding:20px;
+      }
+
     }
+
   </style>
 </head>
+
 <body>
+
 <div class="top"></div>
+
 <main class="shell">
-  <section class="card hero">
-    <img src="logo-luce.png" class="logo" alt="LUCE">
-    <div class="eyebrow">Archivio etichette</div>
-    <h1>Ricerca foto OLO</h1>
-    <p>Inserisci il codice OLO per visualizzare la fotografia delle etichette già archiviata.</p>
-  </section>
 
-  <section class="card form-card">
-    <form id="searchForm">
-      <label for="oloCode">Codice OLO</label>
-      <input id="oloCode" name="oloCode" type="text" minlength="3"
-             autocomplete="off" autocapitalize="characters"
-             placeholder="Esempio: OPI123456" required>
-      <button id="searchButton" type="submit">Cerca etichetta</button>
-    </form>
+<section class="card hero">
 
-    <div id="status" class="status" role="status" aria-live="polite"></div>
+<img src="logo-luce.png" class="logo">
 
-    <div id="result" class="result">
-      <div class="details">
-        <div class="detail"><small>Codice OLO</small><strong id="resultCode"></strong></div>
-        <div class="detail"><small>Data caricamento</small><strong id="resultDate"></strong></div>
-        <div class="detail"><small>Tecnico</small><strong id="resultEmployee"></strong></div>
-        <div class="detail"><small>Nome file</small><strong id="resultFile"></strong></div>
-      </div>
-      <div class="photo-wrap">
-        <img id="resultImage" alt="Foto etichette OLO">
-      </div>
-    </div>
-  </section>
+<div class="eyebrow">Archivio etichette</div>
 
-  <div class="footer">LUCE SRL · Archivio etichette OLO</div>
+<h1>Ricerca foto OLO</h1>
+
+<p>Inserisci il codice OLO per visualizzare la fotografia già archiviata.</p>
+
+</section>
+
+
+<section class="card form-card">
+
+<form id="searchForm">
+
+<label>Codice OLO</label>
+
+<input
+id="oloCode"
+required
+autocomplete="off"
+placeholder="Esempio: OPI123456">
+
+<button id="searchButton">
+Cerca etichetta
+</button>
+
+</form>
+
+<div id="status" class="status"></div>
+
+<div id="result" class="result">
+
+<div class="details">
+
+<div class="detail">
+<small>Codice OLO</small>
+<strong id="resultCode"></strong>
+</div>
+
+<div class="detail">
+<small>Data caricamento</small>
+<strong id="resultDate"></strong>
+</div>
+
+<div class="detail">
+<small>Nome file</small>
+<strong id="resultFile"></strong>
+</div>
+
+</div>
+
+<div class="photo-wrap">
+<img id="resultImage">
+</div>
+
+</div>
+
+</section>
+
+<div class="footer">
+LUCE SRL · Archivio etichette OLO
+</div>
+
 </main>
 
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbyrwXd4aVDVoKZyg01VwCTiEGrOCisxmhDuixuhofUjRBEjvmgoFFeuDvnh-s4B5C-4/exec";
 
-const form = document.getElementById("searchForm");
-const input = document.getElementById("oloCode");
-const button = document.getElementById("searchButton");
-const statusBox = document.getElementById("status");
-const resultBox = document.getElementById("result");
-const resultImage = document.getElementById("resultImage");
+const API_URL="https://script.google.com/macros/s/AKfycbyrwXd4aVDVoKZyg01VwCTiEGrOCisxmhDuixuhofUjRBEjvmgoFFeuDvnh-s4B5C-4/exec";
 
-function showStatus(message, type) {
-  statusBox.textContent = message;
-  statusBox.className = "status show " + type;
+const form=document.getElementById("searchForm");
+const input=document.getElementById("oloCode");
+const button=document.getElementById("searchButton");
+const status=document.getElementById("status");
+const result=document.getElementById("result");
+const img=document.getElementById("resultImage");
+
+function showStatus(msg,type){
+
+status.textContent=msg;
+status.className="status show "+type;
+
 }
 
-function hideResult() {
-  resultBox.classList.remove("show");
-  resultImage.removeAttribute("src");
+function hideResult(){
+
+result.classList.remove("show");
+img.removeAttribute("src");
+
 }
 
-form.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  hideResult();
+form.addEventListener("submit",async(e)=>{
 
-  const oloCode = input.value.trim().toUpperCase().replace(/\s+/g, "");
-  if (oloCode.length < 3) {
-    showStatus("Inserisci un codice OLO valido.", "error");
-    return;
-  }
+e.preventDefault();
 
-  button.disabled = true;
-  button.textContent = "Ricerca in corso…";
-  showStatus("Ricerca dell’etichetta in corso…", "success");
+hideResult();
 
-  try {
-    const url = API_URL + "?action=search&olo=" + encodeURIComponent(oloCode) + "&t=" + Date.now();
-    const response = await fetch(url, { method: "GET", cache: "no-store" });
+const olo=input.value.trim().toUpperCase().replace(/\s+/g,"");
 
-    if (!response.ok) {
-      throw new Error("Il servizio non ha risposto correttamente.");
-    }
+if(olo.length<3){
 
-    const data = await response.json();
+showStatus("Inserisci un codice OLO valido.","error");
+return;
 
-    if (!data.success) {
-      showStatus(data.message || "Nessuna etichetta trovata per questo codice OLO.", "error");
-      return;
-    }
+}
 
-    document.getElementById("resultCode").textContent = data.oloCode || oloCode;
-    document.getElementById("resultDate").textContent = data.date || "—";
-    document.getElementById("resultEmployee").textContent = data.employee || "—";
-    document.getElementById("resultFile").textContent = data.fileName || "—";
+button.disabled=true;
+button.textContent="Ricerca in corso...";
 
-    resultImage.src = data.imageDataUrl;
-    resultImage.onload = () => {
-      resultBox.classList.add("show");
-      showStatus("Etichetta trovata.", "success");
-    };
-    resultImage.onerror = () => {
-      throw new Error("La foto è stata trovata, ma non può essere visualizzata.");
-    };
+showStatus("Ricerca dell'etichetta in corso...","success");
 
-  } catch (error) {
-    showStatus(error.message || "Errore durante la ricerca. Riprova.", "error");
-  } finally {
-    button.disabled = false;
-    button.textContent = "Cerca etichetta";
-  }
+try{
+
+const response=await fetch(
+API_URL+"?action=search&olo="+encodeURIComponent(olo)+"&t="+Date.now(),
+{
+method:"GET",
+cache:"no-store"
 });
 
-input.addEventListener("input", () => {
-  input.value = input.value.toUpperCase();
+if(!response.ok){
+
+throw new Error("Errore di connessione.");
+
+}
+
+const data=await response.json();
+
+if(!data.success){
+
+showStatus(data.message || "Etichetta non trovata.","error");
+return;
+
+}
+
+document.getElementById("resultCode").textContent=data.oloCode || olo;
+document.getElementById("resultDate").textContent=data.date || "—";
+document.getElementById("resultFile").textContent=data.fileName || "—";
+
+img.src=data.imageDataUrl;
+
+img.onload=()=>{
+
+result.classList.add("show");
+
+showStatus("Etichetta trovata.","success");
+
+};
+
+img.onerror=()=>{
+
+showStatus("Impossibile visualizzare la fotografia.","error");
+
+};
+
+}catch(err){
+
+showStatus(err.message || "Errore durante la ricerca.","error");
+
+}
+
+button.disabled=false;
+button.textContent="Cerca etichetta";
+
 });
+
+input.addEventListener("input",()=>{
+
+input.value=input.value.toUpperCase();
+
+});
+
 </script>
+
 </body>
 </html>
